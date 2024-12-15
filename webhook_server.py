@@ -9,10 +9,11 @@ def webhook():
     if request.method == 'POST':
         # Extract the payload (JSON data)
         payload = request.json
+        # print("Received payload", payload)
 
         # Get repository and pusher info (adjust keys based on your webhook payload structure)
-        repo_name = payload.get('repository', {}.get('name', 'Unknown repository'))
-        pusher_name = payload.get('pusher', {}.get('name', 'Unknown user'))
+        repo_name = payload.get('repository', {}).get('name', 'Unknown repository')
+        pusher_name = payload.get('pusher', {}).get('name', 'Unknown user')
 
         print(f"New push to '{repo_name}' by {pusher_name}!")
         return jsonify({"message": "Webhook received and message printed!"}), 200
